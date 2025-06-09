@@ -44,7 +44,8 @@
 											</h1>
                                         <p>We can take a break from all the phonics in Thai for now and let's get into actual useful stuff: numbers. I know everyone wants to learn how to ask how much things are when you go shopping, but you have to know the answers for it to be useful.</p>
                                     <p>Here are the numbers</p>
-                                        <table style="font-size: 20pt;">
+                                        <script src="./assets/js/playsound.js"></script>
+                                        <table>
                                             <tr>
                                                 <th>number</th>
                                                 <th>Thai number</th>
@@ -55,97 +56,103 @@
                                                 <td>1</td>
                                                 <td>๑</td>
                                                 <td>หนึ่ง</td>
-                                                <td style="padding-top: 0; padding-bottom: 0;"><audio controls>
+                                                <td>
+                                                    <audio id="1">
                                                         <source src="./audios/vocab/%E0%B8%AB%E0%B8%99%E0%B8%B6%E0%B9%88%E0%B8%87.mp3" type="audio/mp3">
                                                         Your browser does not support the audio tag.
-                                                    </audio></td>
+                                                    </audio>
+                                                    <button onclick='playSound("1")'>play</button>
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td>2</td>
                                                 <td>๒</td>
                                                 <td>สอง</td>
                                                 <td>
-                                                    <audio controls>
+                                                    <audio id="2">
                                                         <source src="./audios/vocab/%E0%B8%AA%E0%B8%AD%E0%B8%87.mp3" type="audio/mp3">
                                                         Your browser does not support the audio tag.
                                                     </audio>
+                                                    <button onclick='playSound("2")'>play</button>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>3</td>
                                                 <td>๓</td>
                                                 <td>สาม</td>
-                                                <td><audio controls>
+                                                <td><audio id="3">
                                                         <source src="./audios/vocab/%E0%B8%AA%E0%B8%B2%E0%B8%A1.mp3" type="audio/mp3">
                                                         Your browser does not support the audio tag.
-                                                    </audio></td>
+                                                    </audio>
+                                                    <button onclick='playSound("3")'>play</button>
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td>4</td>
                                                 <td>๔</td>
                                                 <td>สี่</td>
-                                                <td><audio controls>
+                                                <td><audio id="4">
                                                         <source src="./audios/vocab/%E0%B8%AA%E0%B8%B5%E0%B9%88.mp3" type="audio/mp3">
                                                         Your browser does not support the audio tag.
-                                                    </audio></td>
+                                                    </audio><button onclick='playSound("4")'>play</button></td>
                                             </tr>
                                             <tr>
                                                 <td>5</td>
                                                 <td>๕</td>
                                                 <td>ห้า</td>
-                                                <td><audio controls>
+                                                <td><audio id="5">
                                                         <source src="./audios/vocab/%E0%B8%AB%E0%B9%89%E0%B8%B2.mp3" type="audio/mp3">
                                                         Your browser does not support the audio tag.
-                                                    </audio></td>
+                                                    </audio><button onclick='playSound("5")'>play</button></td>
                                             </tr>
                                             <tr>
                                                 <td>6</td>
                                                 <td>๖</td>
                                                 <td>หก</td>
-                                                <td><audio controls>
+                                                <td><audio id="6">
                                                         <source src="./audios/vocab/%E0%B8%AB%E0%B8%81.mp3" type="audio/mp3">
                                                         Your browser does not support the audio tag.
-                                                    </audio></td>
+                                                    </audio><button onclick='playSound("6")'>play</button></td>
                                             </tr>
                                             <tr>
                                                 <td>7</td>
                                                 <td>๗</td>
                                                 <td>เจ็ด</td>
-                                                <td><audio controls>
+                                                <td><audio id="7">
                                                         <source src="./audios/vocab/%E0%B9%80%E0%B8%88%E0%B9%87%E0%B8%94.mp3" type="audio/mp3">
                                                         Your browser does not support the audio tag.
-                                                    </audio></td>
+                                                    </audio><button onclick='playSound("7")'>play</button></td>
                                             </tr>
                                             <tr>
                                                 <td>8</td>
                                                 <td>๘</td>
                                                 <td>แปด</td>
-                                                <td><audio controls>
+                                                <td><audio id="8">
                                                         <source src="./audios/vocab/%E0%B9%81%E0%B8%9B%E0%B8%94.mp3" type="audio/mp3">
                                                         Your browser does not support the audio tag.
-                                                    </audio></td>
+                                                    </audio><button onclick='playSound("8")'>play</button></td>
                                             </tr>
                                             <tr>
                                                 <td>9</td>
                                                 <td>๙</td>
                                                 <td>เก้า</td>
-                                                <td><audio controls>
+                                                <td><audio id="9">
                                                         <source src="./audios/vocab/%E0%B9%80%E0%B8%81%E0%B9%89%E0%B8%B2.mp3" type="audio/mp3">
                                                         Your browser does not support the audio tag.
-                                                    </audio></td>
+                                                    </audio><button onclick='playSound("9")'>play</button></td>
                                             </tr>
                                             <tr>
                                                 <td>10</td>
                                                 <td>๑๐</td>
                                                 <td>สิบ</td>
-                                                <td><audio controls>
+                                                <td><audio id="10">
                                                         <source src="./audios/vocab/%E0%B8%AA%E0%B8%B4%E0%B8%9A.mp3" type="audio/mp3">
                                                         Your browser does not support the audio tag.
-                                                    </audio></td>
+                                                    </audio><button onclick='playSound("10")'>play</button></td>
                                             </tr>
                                         </table>
                                         <p>These are other place values</p>
-                                        <table style="font-size: 14pt">
+                                        <table>
                                             <tr>
                                                 <th>Place value</th>
                                                 <th>Thai written</th>
@@ -154,44 +161,45 @@
                                             <tr>
                                                 <td>hundred</td>
                                                 <td>ร้อย</td>
-                                                <td><audio controls>
+                                                <td><audio id="100">
                                                         <source src="./audios/vocab/%E0%B8%A3%E0%B9%89%E0%B8%AD%E0%B8%A2.mp3" type="audio/mp3">
                                                         Your browser does not support the audio tag.
-                                                    </audio></td>
+                                                    </audio><button onclick='playSound("100")'>play</button></td>
                                             </tr>
                                             <tr>
                                                 <td>thousand</td>
                                                 <td>พัน</td>
                                                 <td>
-                                                    <audio controls>
+                                                    <audio id="1000">
                                                         <source src="./audios/vocab/%E0%B8%9E%E0%B8%B1%E0%B8%99.mp3" type="audio/mp3">
                                                         Your browser does not support the audio tag.
                                                     </audio>
+                                                    <button onclick='playSound("1000")'>play</button>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>ten thousand</td>
                                                 <td>หมื่น</td>
-                                                <td><audio controls>
+                                                <td><audio id="10000">
                                                         <source src="./audios/vocab/%E0%B8%AB%E0%B8%A1%E0%B8%B5%E0%B9%88%E0%B8%99.mp3" type="audio/mp3">
                                                         Your browser does not support the audio tag.
-                                                    </audio></td>
+                                                    </audio><button onclick='playSound("10000")'>play</button></td>
                                             </tr>
                                             <tr>
                                                 <td>hundred thousand</td>
                                                 <td>แสน</td>
-                                                <td><audio controls>
+                                                <td><audio id="100000">
                                                         <source src="./audios/vocab/%E0%B9%81%E0%B8%AA%E0%B8%99.mp3" type="audio/mp3">
                                                         Your browser does not support the audio tag.
-                                                    </audio></td>
+                                                    </audio><button onclick='playSound("100000")'>play</button></td>
                                             </tr>
                                             <tr>
                                                 <td>million</td>
                                                 <td>ล้าน</td>
-                                                <td><audio controls>
+                                                <td><audio id="M">
                                                         <source src="./audios/vocab/%E0%B8%A5%E0%B9%89%E0%B8%B2%E0%B8%99.mp3" type="audio/mp3">
                                                         Your browser does not support the audio tag.
-                                                    </audio></td>
+                                                    </audio><button onclick='playSound("M")'>play</button></td>
                                             </tr>
                                             
                                         </table>
