@@ -21,7 +21,7 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2893492306157134"      crossorigin="anonymous"></script>  </head>
 	<body class="is-preload">
-
+		<script src="./assets/js/playsound.js"></script>
 		<!-- Wrapper --><a href="https://yournerdythaitutor.github.io/"><img src="./Img/Logo.png" style="width: 70pt; margin:auto; display: block;" onmouseover="this.src='./Img/Logo.gif';" onmouseout="this.src='./Img/Logo.png';"></a>
 			<div id="wrapper">
 
@@ -54,7 +54,10 @@
                                             <tr>
                                                 <td>อยู่ที่ไหน</td>
                                                 <td>where is+(place)</td>
-                                                <td></td>
+                                                <td><audio id="0">
+                                                        <source src="./audios/directions/%E0%B8%AD%E0%B8%A2%E0%B8%B9%E0%B9%88%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B9%84%E0%B8%AB%E0%B8%99.mp3" type="audio/mp3">
+                                                        Your browser does not support the audio tag.
+                                                    </audio><button onclick='playSound("0")'>play</button></td>
                                                 <td>(place)+อยู่ที่ไหน</td>
 												<td>ห้องน้ำอยู่ที่ไหน = Where is the restroom?</td>
 												<tr>
@@ -74,21 +77,30 @@
                                             <tr>
                                                 <td>ห้องน้ำ</td>
                                                 <td>restroom</td>
-                                                <td></td>
+                                                <td><audio id="1">
+                                                        <source src="./audios/directions/%E0%B8%AB%E0%B9%89%E0%B8%AD%E0%B8%87%E0%B8%99%E0%B9%89%E0%B8%B3.mp3" type="audio/mp3">
+                                                        Your browser does not support the audio tag.
+                                                    </audio><button onclick='playSound("1")'>play</button></td>
 												<td></td>
 												<td></td>
                                             </tr>
 											<tr>
                                                 <td>ที่แลกเงิน</td>
                                                 <td>money exchange place</td>
-                                                <td></td>
+                                                <td><audio id="2">
+                                                        <source src="./audios/directions/%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B9%81%E0%B8%A5%E0%B8%81%E0%B9%80%E0%B8%87%E0%B8%B4%E0%B8%99.mp3" type="audio/mp3">
+                                                        Your browser does not support the audio tag.
+                                                    </audio><button onclick='playSound("2")'>play</button></td>
 												<td></td>
 												<td>ที่แลกเงินอยู่ไหน =  Where is the money exchange place?</td>
                                             </tr>
 											<tr>
 												<td>รถไฟฟ้า</td>
 												<td>Sky Train</td>
-												<td></td>
+												<td><audio id="3">
+                                                        <source src="./audios/directions/%E0%B8%A3%E0%B8%96%E0%B9%84%E0%B8%9F%E0%B8%9F%E0%B9%89%E0%B8%B2.mp3" type="audio/mp3">
+                                                        Your browser does not support the audio tag.
+                                                    </audio><button onclick='playSound("3")'>play</button></td>
 												<td></td>
 												<td></td>
 												
@@ -96,83 +108,119 @@
 											<tr>
 												<td>รถใต้ดิน</td>
 												<td>Subway, underground train</td>
-												<td></td>
+												<td><audio id="4">
+                                                        <source src="./audios/directions/%E0%B8%A3%E0%B8%96%E0%B9%83%E0%B8%95%E0%B9%89%E0%B8%94%E0%B8%B4%E0%B8%99.mp3" type="audio/mp3">
+                                                        Your browser does not support the audio tag.
+                                                    </audio><button onclick='playSound("4")'>play</button></td>
 												<td></td>
 												<td></td>
 											</tr>
                                             <tr>
                                                 <td>ขอบคุณ</td>
                                                 <td>Thank you</td>
-                                                <td></td>
+                                                <td><audio id="5">
+                                                        <source src="./audios/directions/%E0%B8%82%E0%B8%AD%E0%B8%9A%E0%B8%84%E0%B8%B8%E0%B8%93.mp3" type="audio/mp3">
+                                                        Your browser does not support the audio tag.
+                                                    </audio><button onclick='playSound("5")'>play</button></td>
 												<td></td>
 												<td></td>
                                             </tr>
                                             <tr>
                                                 <td>สุขา</td>
                                                 <td>restroom (formal)</td>
-                                                <td></td>
+                                                <td><audio id="6">
+                                                        <source src="./audios/directions/%E0%B8%AA%E0%B8%B8%E0%B8%82%E0%B8%B2.mp3" type="audio/mp3">
+                                                        Your browser does not support the audio tag.
+                                                    </audio><button onclick='playSound("6")'>play</button></td>
                                                 <td>You probably won't say it but it will be helpful to read signs. Most bathroom signs will say "สุขา" instead of "ห้องน้ำ"</td>
                                             </tr>
                                             <tr>
                                                 <td>เลี้ยว</td>
                                                 <td>to turn</td>
-                                                <td></td>
+                                                <td><audio id="7">
+                                                        <source src="./audios/directions/%E0%B9%80%E0%B8%A5%E0%B8%B5%E0%B9%89%E0%B8%A2%E0%B8%A7.mp3" type="audio/mp3">
+                                                        Your browser does not support the audio tag.
+                                                    </audio><button onclick='playSound("7")'>play</button></td>
                                                 <td>เลี้ยว+(ซ้าย/ขวา)= turn left/right,เลี้ยว(ที่/ตรง) + (place) = turn at (place) </td>
 												<td>เลี้ยวซ้ายที่แม็คโดนัล = turn left at McDonald's</td>
                                             </tr>
 											<tr>
                                                 <td>ทาง</td>
                                                 <td>Way, direction of, on the(direction)</td>
-                                                <td></td>
+                                                <td><!---audio id="8">
+                                                        <source src="./audios/directions/mp3" type="audio/mp3">
+                                                        Your browser does not support the audio tag.
+                                                    </!---audio><button onclick='playSound("5")'>play</button---></td>
 												<td></td>
 												<td>สตาร์บัคอยู่ทางซ้าย = Starbucks is on the left</td>												
                                             </tr>
                                             <tr>
                                                 <td>ตรงไป</td>
                                                 <td>Go straight </td>
-                                                <td></td>
+                                                <td><audio id="9">
+                                                        <source src="./audios/directions/%E0%B8%95%E0%B8%A3%E0%B8%87%E0%B9%84%E0%B8%9B.mp3" type="audio/mp3">
+                                                        Your browser does not support the audio tag.
+                                                    </audio><button onclick='playSound("9")'>play</button></td>
 												<td></td>
 												<td>ตรงไปข้างหน้า = go straight ahead</td>
                                             </tr>
                                             <tr>
                                                 <td>ซ้าย</td>
                                                 <td>Left</td>
-                                                <td></td>
+                                                <td><audio id="10">
+                                                        <source src="./audios/directions/%E0%B8%8B%E0%B9%89%E0%B8%B2%E0%B8%A2.mp3" type="audio/mp3">
+                                                        Your browser does not support the audio tag.
+                                                    </audio><button onclick='playSound("10")'>play</button></td>
 												<td></td>
 												<td>สตาร์บัคอยู่ทางซ้าย = Starbucks is on the left</td>												
                                             </tr>
                                             <tr>
                                                 <td>ขวา</td>
                                                 <td>Right</td>
-                                                <td></td>
+                                                <td><audio id="11">
+                                                        <source src="./audios/directions/%E0%B8%82%E0%B8%A7%E0%B8%B2.mp3" type="audio/mp3">
+                                                        Your browser does not support the audio tag.
+                                                    </audio><button onclick='playSound("11")'>play</button></td>
 												<td></td>
 												<td>เลี้ยวขวาตรงเบอร์เกอร์คิง = turn right at Burger King</td>
                                             </tr>
                                             <tr>
                                                 <td>แล้ว</td>
                                                 <td>Then</td>
-                                                <td></td>
+                                                <td><audio id="12">
+                                                        <source src="./audios/directions/%E0%B9%81%E0%B8%A5%E0%B9%89%E0%B8%A7.mp3" type="audio/mp3">
+                                                        Your browser does not support the audio tag.
+                                                    </audio><button onclick='playSound("12")'>play</button></td>
                                                 <td>(intruction)+แล้ว+(more instruction)</td>
 												<td>ตรงไปแล้วเลี้ยวขวา = go straight then turn right</td>
                                             </tr>
 											<tr>
 												<td>ข้าง</td>
 												<td>Side, right next to</td>
-												<td></td>
+												<td><audio id="13">
+                                                        <source src="./audios/directions/%E0%B8%82%E0%B9%89%E0%B8%B2%E0%B8%87.mp3" type="audio/mp3">
+                                                        Your browser does not support the audio tag.
+                                                    </audio><button onclick='playSound("13")'>play</button></td>
 												<td>ข้าง+(direction)</td>
 												<td>เซเว่นอยู่ข้างเคเอฟซี = 7-11 is right next to KFC. , สตาร์บัคอยู่ข้างซ้าย = Starbucks is on the left side.</td>
 											</tr>
 											<tr>
                                                 <td>ข้างหน้า</td>
                                                 <td>Straight ahead, right in front</td>
-                                                <td></td>
+                                                <td><audio id="14">
+                                                        <source src="./audios/directions/%E0%B8%82%E0%B9%89%E0%B8%B2%E0%B8%87%E0%B8%AB%E0%B8%99%E0%B9%89%E0%B8%B2.mp3" type="audio/mp3">
+                                                        Your browser does not support the audio tag.
+                                                    </audio><button onclick='playSound("14")'>play</button></td>
                                                 <td>ตรงไป+ข้างหน้า = go straight ahead, อยู่+ข้างหน้า =it's right ahead, อยู่+ข้างหน้า+(place)=it's in front of</td>
 												<td>ห้องน้ำอยู่ข้างหน้าโลตัส = The bathroom is in front of Lotus.</td>
                                             </tr>
 											<tr>
 												<td>ชั้น</td>
 												<td>Level (floor)</td>
-												<td></td>
+												<td><audio id="15">
+                                                        <source src="./audios/directions/%E0%B8%8A%E0%B8%B1%E0%B9%89%E0%B8%99.mp3" type="audio/mp3">
+                                                        Your browser does not support the audio tag.
+                                                    </audio><button onclick='playSound("15")'>play</button></td>
 												<td>อยู่+ชั้น+(level) = is at level + (level)</td>
 												<td>รถไฟฟ้าอยู่ชั้นสาม = The sky train is on level 3.</td>
 											</tr>
