@@ -42,6 +42,7 @@
 					<!-- Header -->
 					<header id="header">
 						<a href="./index.html" class="logo"><strong>Lesson 21 </strong> This/That and Clothing classifiers</a>
+						<script src="./assets/js/playsound.js"></script>
 					</header>
 
 					<!-- Banner -->
@@ -60,37 +61,37 @@
 								<tr>
 									<td>นี้</td>
 									<td>this+(object)</td>
-									<td></td>
+									<td><audio id="นี้"> <source src="./audios/demonstratives/นี้.mp3" type="audio/mp3" /> Your browser does not support the audio tag.</audio><button onclick='playSound("นี้")'>play</button></td>
 									<td>(classifier)+นี้</td>
 								</tr>
 								<tr>
 									<td>นั้น</td>
 									<td>that+(object)</td>
-									<td></td>
+									<td><audio id="นั้น"> <source src="./audios/demonstratives/นั้น.mp3" type="audio/mp3" /> Your browser does not support the audio tag.</audio><button onclick='playSound("นั้น")'>play</button></td>
 									<td>(classifier)+นั้น ** used when talking about something that is far from you but close to the person you're talking to</td>
 								</tr>
 								<tr>
 									<td>โน้น</td>
 									<td>that(over there)+(object)</td>
-									<td></td>
+									<td><audio id="โน้น"> <source src="./audios/demonstratives/โน้น.mp3" type="audio/mp3" /> Your browser does not support the audio tag.</audio><button onclick='playSound("โน้น")'>play</button></td>
 									<td>(classifier)+โน้น ** used when talking about something that is far from both you and the person you're talking to</td>
 								</tr>
 								<tr>
 									<td>นี่</td>
 									<td>this</td>
-									<td></td>
+									<td><audio id="นี่"> <source src="./audios/demonstratives/นี่.mp3" type="audio/mp3" /> Your browser does not support the audio tag.</audio><button onclick='playSound("นี่")'>play</button></td>
 									<td>นี่ **is used without classifier</td>
 								</tr>
 								<tr>
 									<td>นั่น</td>
 									<td>that</td>
-									<td></td>
+									<td><audio id="นั่น"> <source src="./audios/demonstratives/นั่น.mp3" type="audio/mp3" /> Your browser does not support the audio tag.</audio><button onclick='playSound("นั่น")'>play</button></td>
 									<td>นั่น **is used without classifier</td>
 								</tr>
 								<tr>
 									<td>โน่น</td>
 									<td>that over there</td>
-									<td></td>
+									<td><audio id="โน่น"> <source src="./audios/demonstratives/โน่น.mp3" type="audio/mp3" /> Your browser does not support the audio tag.</audio><button onclick='playSound("โน่น")'>play</button></td>
 									<td>โน่น **is used without classifier</td>
 								</tr>
 							</table>
@@ -105,33 +106,39 @@
 								</tr>
 								<tr>
 									<td>ตัว</td>
-									<td></td>
+									<td><audio id="ตัว"> <source src="./audios/classifiers/ตัว.mp3" type="audio/mp3" /> Your browser does not support the audio tag.</audio><button onclick='playSound("ตัว")'>play</button></td>
 									<td>Literal translation means "body", so used for something that has a body such as animals, clothings that is a shape of your body</td>
 								</tr>
 								<tr>
 									<td>ผืน</td>
-									<td></td>
+									<td><audio id="ผืน"> <source src="./audios/classifiers/ผืน.mp3" type="audio/mp3" /> Your browser does not support the audio tag.</audio><button onclick='playSound("ผืน")'>play</button></td>
 									<td>Means a "sheet", used for flat things that come in sheets, such as paper, sheets, fabric.</td>
 								</tr>
 								<tr>
 									<td>คู่</td>
-									<td></td>
+									<td><audio id="คู่"> <source src="./audios/classifiers/คู่.mp3" type="audio/mp3" /> Your browser does not support the audio tag.</audio><button onclick='playSound("คู่")'>play</button></td>
 									<td>Means "pair", for things that come in pairs, such as shoes, earrings, couples.</td>
 								</tr>
 								<tr>
 									<td>ข้าง</td>
-									<td></td>
+									<td><audio id="ข้าง"> <source src="./audios/classifiers/ข้าง.mp3" type="audio/mp3" /> Your browser does not support the audio tag.</audio><button onclick='playSound("ข้าง")'>play</button></td>
 									<td>Means "side", for things that are supposed to come in pairs, but when talking about just one of them.</td>
 								</tr>
 								<tr>
 									<td>ชุด</td>
-									<td></td>
+									<td><audio id="ชุด"> <source src="./audios/classifiers/ชุด.mp3" type="audio/mp3" /> Your browser does not support the audio tag.</audio><button onclick='playSound("ชุด")'>play</button></td>
 									<td>Means "set", for things that come in sets, such as outfits, combo meals.</td>
 								</tr>
 								<tr>
 									<td>เรือน</td>
-									<td></td>
+									<td><audio id="เรือน"> <source src="./audios/classifiers/เรือน.mp3" type="audio/mp3" /> Your browser does not support the audio tag.</audio><button onclick='playSound("เรือน")'>play</button></td>
 									<td>Literal translation is a house or a box with many components inside, just like a building. Back in the days, clocks were just big boxes with many different components inside, so they use this classifiers for clocks and watches as well.</td>
+								</tr>
+								<tr>
+									<td>ใบ</td>
+									<td><audio id="ใบ"> <source src="./audios/classifiers/ใบ.mp3" type="audio/mp3" /> Your browser does not support the audio tag.</audio><button onclick='playSound("ใบ")'>play</button></td>
+									<td>Literal translation is a leaf, so it's used for flat things or things that can contain other things such as hats(contains my head), a bag, a cup, a bowl, or a ballon.</td>
+									
 								</tr>
 							</table>
 							<p>For the clothings that we covered last chapter, the following are their classifiers</p>
@@ -252,12 +259,12 @@
 								<h1>Practice</h1>
 								<div class="content">
 									<h3>
-										Try out this practice to see if you identify the words covered in this lesson
+										Try out this practice to see if you can translate the phrases that are said in native speed. Don'te worry there's always a helper button.
 									</h3>
 									<ul class="actions">
 										<li>
 											<a
-												href="https://yournerdythaitutor.github.io/ThaiLessons/Lesson20.html"
+												href="https://yournerdythaitutor.github.io/VocabGames/Lesson21.html"
 												target="_blank"
 												rel="noopener noreferrer"
 												class="button"
@@ -269,7 +276,7 @@
 									<ul class="actions">
 										<li>
 											<a
-												href="https://yournerdythaitutor.github.io/ThaiLessons/Lesson20-2.html"
+												href="https://yournerdythaitutor.github.io/ThaiLessons/Lesson21-2.html"
 												target="_blank"
 												rel="noopener noreferrer"
 												class="button"
