@@ -2291,8 +2291,8 @@ button,
  }
 
 .table-filter-button {
-  margin-right: 1%;
-  margin-bottom: 1%;
-  box-shadow: inset 0 0 0 2px purple;
+  margin-right: 1% !important;
+  margin-bottom: 1% !important;
+  box-shadow: inset 0 0 0 2px purple !important;
   color: purple !important;
  } 
