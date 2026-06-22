@@ -23,6 +23,16 @@
 
             }
         </style>
+
+      <script>
+        // Prevents search engines from indexing the page if the URL contains spam parameters
+        if (window.location.search) {
+          var meta = document.createElement('meta');
+          meta.name = "robots";
+          meta.content = "noindex, nofollow";
+          document.getElementsByTagName('head')[0].appendChild(meta);
+        }
+      </script>
     </head>
     <body>
     <div id="practice" class="content"></div>
