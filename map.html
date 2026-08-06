@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thailand 77 Provinces Bilingual Interactive Map</title>
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+            background-color: #f4f4f9;
+        }
+
+        /* Sidebar styling */
+        .sidebar {
+            width: 400px;
+            background: #ffffff;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid #ddd;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.05);
+            z-index: 1000;
+        }
+
+        .sidebar-header {
+            background: #2c3e50;
+            color: white;
+            padding: 20px 15px;
+            text-align: center;
+        }
+
+        .sidebar-header h2 {
+            margin: 0 0 5px 0;
+            font-size: 19px;
+        }
+
+        .sidebar-header p {
+            margin: 0;
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        .province-list-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 15px;
+        }
+
+        /* Region Sections */
+        .region-section {
+            margin-bottom: 15px;
+        }
+
+        .region-title {
+            background: #ecf0f1;
+            color: #2c3e50;
+            padding: 10px 12px;
+            font-weight: bold;
+            font-size: 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-left: 4px solid #3498db;
+        }
+
+        .region-title:hover {
+            background: #e2e8f0;
+        }
+
+        .province-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            padding: 10px 4px;
+        }
+
+        /* Province Button Styling (Bilingual Stack) */
+        .prov-btn {
+            background: #f8fafc;
+            border: 1px solid #cbd5e1;
+            padding: 7px 10px;
+            font-size: 13px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            color: #334155;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .prov-btn:hover {
+            background: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .prov-btn:hover .thai-name {
+            color: #f1f5f9;
+        }
+
+        .eng-name {
+            font-weight: 500;
+        }
+
+        .thai-name {
+            font-size: 12px;
+            color: #64748b;
+        }
+
+        /* Map Container styling */
+        #map {
+            flex: 1;
+            height: 100vh;
+        }
+
+        /* Custom scrollbar for sidebar */
+        .province-list-container::-webkit-scrollbar {
+            width: 6px;
+        }
+        .province-list-container::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Left Sidebar with all 77 Provinces in English & Thai -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h2>🇹🇭 Thailand Provinces / จังหวัดไทย</h2>
+            <p>Click any province to pinpoint it on the map</p>
+        </div>
+        <div class="province-list-container" id="provinceListContainer">
+            <!-- Populated dynamically via JavaScript -->
+        </div>
+    </div>
+
+    <!-- Right Geographical Leaflet Map -->
+    <div id="map"></div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script>
+        // Initialize Map centered over Thailand
+        var map = L.map('map').setView([13.7367, 100.5232], 6);
+
+        // Add OpenStreetMap tiles
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 12,
+            minZoom: 5,
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        let activeMarker = null;
+
+        // Comprehensive database of all 77 provinces with English name, Thai name, coordinates, and description
+        const thailandRegions = [
+            {
+                region: "Northern Thailand (16 Provinces)",
+                provinces: [
+                    { name: "Chiang Mai", thai: "เชียงใหม่", lat: 18.7883, lng: 98.9853, desc: "Cultural hub famous for temples and mountainous landscapes." },
+                    { name: "Chiang Rai", thai: "เชียงราย", lat: 19.9105, lng: 99.8406, desc: "Home to the White Temple and the Golden Triangle." },
+                    { name: "Kamphaeng Phet", thai: "กำแพงเพชร", lat: 16.4828, lng: 99.5226, desc: "Features historical UNESCO park ruins along the Ping River." },
+                    { name: "Lampang", thai: "ลำปาง", lat: 18.2888, lng: 99.5003, desc: "Famous for horse-drawn carriages and ancient Lanna temples." },
+                    { name: "Lamphun", thai: "ลำพูน", lat: 18.5744, lng: 99.0087, desc: "One of the oldest cities in Thailand, rich in historical heritage." },
+                    { name: "Mae Hong Son", thai: "แม่ฮ่องสอน", lat: 19.3020, lng: 97.9654, desc: "Misty mountain terrain bordering Myanmar, known for Pai." },
+                    { name: "Nakhon Sawan", thai: "นครสวรรค์", lat: 15.7042, lng: 100.1357, desc: "The gateway city where four rivers merge to form the Chao Phraya." },
+                    { name: "Nan", thai: "น่าน", lat: 18.7756, lng: 100.7730, desc: "A quiet, culturally rich northern valley bordered by Laos." },
+                    { name: "Phayao", thai: "พะเยา", lat: 19.1667, lng: 99.9000, desc: "Home to Kwan Phayao, a massive scenic freshwater lake." },
+                    { name: "Phetchabun", thai: "เพชรบูรณ์", lat: 16.4190, lng: 101.1537, desc: "Known for stunning sea-of-fog viewpoints at Khao Kho." },
+                    { name: "Phichit", thai: "พิจิตร", lat: 16.4429, lng: 100.3506, desc: "Flat agricultural region situated in the Nan river basin." },
+                    { name: "Phitsanulok", thai: "พิษณุโลก", lat: 16.8211, lng: 100.2659, desc: "Historic city housing the revered Phra Buddha Chinnarat." },
+                    { name: "Phrae", thai: "แพร่", lat: 18.1446, lng: 100.1804, desc: "Historic teak-wood trading hub tucked inside a mountain basin." },
+                    { name: "Sukhothai", thai: "สุโขทัย", lat: 17.0056, lng: 99.8260, desc: "Location of Thailand's first capital and monumental ruins." },
+                    { name: "Tak", thai: "ตาก", lat: 16.8839, lng: 99.1259, desc: "Rugged western border province featuring Thailand's highest waterfall." },
+                    { name: "Uttaradit", thai: "อุตรดิตถ์", lat: 17.6167, lng: 100.0991, desc: "Renowned for producing the world's best Langsat fruit." }
+                ]
+            },
+            {
+                region: "Northeastern Thailand / Isan (20 Provinces)",
+                provinces: [
+                    { name: "Amnat Charoen", thai: "อำนาจเจริญ", lat: 15.8658, lng: 104.6258, desc: "Peaceful agricultural province situated along the Mekong River." },
+                    { name: "Bueng Kan", thai: "บึงกาฬ", lat: 18.3642, lng: 103.6565, desc: "Thailand's newest province, famous for Wat Phu Tok cliff temple." },
+                    { name: "Buriram", thai: "บุรีรัมย์", lat: 14.9930, lng: 103.1029, desc: "Home to magnificent Khmer stone sanctuaries and international sports stadiums." },
+                    { name: "Chaiyaphum", thai: "ชัยภูมิ", lat: 15.8065, lng: 102.0315, desc: "Features beautiful highland national parks and blooming tulip fields." },
+                    { name: "Kalasin", thai: "กาฬสินธุ์", lat: 16.4322, lng: 103.5069, desc: "Fossil site famous for dinosaur excavations and silk weaving." },
+                    { name: "Khon Kaen", thai: "ขอนแก่น", lat: 16.4322, lng: 102.8236, desc: "A vibrant metropolitan hub for education and commerce in Isan." },
+                    { name: "Loei", thai: "เลย", lat: 17.4860, lng: 101.7223, desc: "Cool mountainous province famous for the Phi Ta Khon festival." },
+                    { name: "Maha Sarakham", thai: "มหาสารคาม", lat: 16.1847, lng: 103.3056, desc: "Known as an important university and educational center." },
+                    { name: "Mukdahan", thai: "มุกดาหาร", lat: 16.5434, lng: 104.7235, desc: "Border province linked to Laos via the second Thai-Lao Friendship Bridge." },
+                    { name: "Nakhon Phanom", thai: "นครพนม", lat: 17.4055, lng: 104.7685, desc: "Scenic Mekong riverside city with strong multicultural French-Indochinese heritage." },
+                    { name: "Nakhon Ratchasima", thai: "นครราชสีมา", lat: 14.9799, lng: 102.0977, desc: "The largest province in Thailand, serving as the grand gateway to Isan." },
+                    { name: "Nong Bua Lamphu", thai: "หนองบัวลำภู", lat: 17.2140, lng: 102.4431, desc: "Historic agricultural territory with scenic prehistoric rock formations." },
+                    { name: "Nong Khai", thai: "หนองคาย", lat: 17.8783, lng: 102.7414, desc: "Lively border town overlooking Laos across the Mekong River." },
+                    { name: "Roi Et", thai: "ร้อยเอ็ด", lat: 16.0538, lng: 103.6520, desc: "Central Isan plain known for its iconic giant standing Buddha." },
+                    { name: "Sakon Nakhon", thai: "สกลนคร", lat: 17.1667, lng: 104.1500, desc: "Spiritual center featuring major Buddhist temples and scenic lakes." },
+                    { name: "Sisaket", thai: "ศรีสะเกษ", lat: 15.1186, lng: 104.3220, desc: "Home to ancient cliffside Khmer temples like Khao Phra Wihan history." },
+                    { name: "Surin", thai: "สุรินทร์", lat: 14.8824, lng: 103.4936, desc: "Famous for its annual elephant festival and ancient silk traditions." },
+                    { name: "Ubon Ratchathani", thai: "อุบลราชธานี", lat: 15.2289, lng: 104.8564, desc: "Easternmost major province known for stunning candle festivals and national parks." },
+                    { name: "Udon Thani", thai: "อุดรธานี", lat: 17.4138, lng: 102.7872, desc: "Thriving hub housing the world-famous archaeological site of Ban Chiang." },
+                    { name: "Yasothon", thai: "ยโสธร", lat: 15.7926, lng: 104.1453, desc: "Celebrated annually for its cultural Rocket Festival (Bun Bang Fai)." }
+                ]
+            },
+            {
+                region: "Central Thailand (21 Provinces)",
+                provinces: [
+                    { name: "Ang Thong", thai: "อ่างทอง", lat: 14.5896, lng: 100.4550, desc: "Flat rice-farming basin renowned for magnificent giant Buddha statues." },
+                    { name: "Ayutthaya", thai: "พระนครศรีอยุธยา", lat: 14.3532, lng: 100.5600, desc: "UNESCO World Heritage site featuring majestic ruins of the ancient capital." },
+                    { name: "Bangkok", thai: "กรุงเทพมหานคร", lat: 13.7563, lng: 100.5018, desc: "The bustling capital city filled with ornate temples and modern skyscrapers." },
+                    { name: "Chachoengsao", thai: "ฉะเชิงเทรา", lat: 13.6904, lng: 101.0779, desc: "Lies along the Bang Pakong River, famous for its giant pink Ganesha." },
+                    { name: "Chainat", thai: "ชัยนาท", lat: 15.1852, lng: 100.1251, desc: "Central agricultural heartland home to Thailand's first major water dam." },
+                    { name: "Chanthaburi", thai: "จันทบุรี", lat: 12.6113, lng: 102.1043, desc: "Coastal gem famous for tropical fruits, gemstone markets, and waterfalls." },
+                    { name: "Chonburi", thai: "ชลบุรี", lat: 13.3611, lng: 100.9847, desc: "Eastern coastline destination featuring Pattaya and popular beach resorts." },
+                    { name: "Kanchanaburi", thai: "กาญจนบุรี", lat: 14.0040, lng: 99.5489, desc: "Steeped in WWII history, featuring the River Kwai Bridge and Erawan falls." },
+                    { name: "Lopburi", thai: "ลพบุรี", lat: 14.7995, lng: 100.6534, desc: "Ancient city famous for sunflower fields and urban macaque populations." },
+                    { name: "Nakhon Nayok", thai: "นครนายก", lat: 14.2069, lng: 101.2131, desc: "Popular weekend getaway for white-water rafting and mountain waterfalls." },
+                    { name: "Nakhon Pathom", thai: "นครปฐม", lat: 13.8196, lng: 100.3629, desc: "Home to Phra Pathom Chedi, one of the tallest Buddhist stupas globally." },
+                    { name: "Nonthaburi", thai: "นนทบุรี", lat: 13.8591, lng: 100.5217, desc: "Densely populated urban extension directly northwest of Bangkok." },
+                    { name: "Pathum Thani", thai: "ปทุมธานี", lat: 14.0206, lng: 100.5250, desc: "Suburban hub containing science museums and historic agricultural grounds." },
+                    { name: "Prachinburi", thai: "ปราจีนบุรี", lat: 15.0500, lng: 101.3667, desc: "Gateway to Khao Yai National Park with rich herbal medicine history." },
+                    { name: "Rayong", thai: "ระยอง", lat: 12.6814, lng: 101.2720, desc: "Renowned coastline leading out to popular island getaways like Koh Samet." },
+                    { name: "Sa Kaeo", thai: "สระแก้ว", lat: 13.8016, lng: 102.0744, desc: "Border province featuring ancient Khmer sandstone temples and markets." },
+                    { name: "Samut Prakan", thai: "สมุทรปราการ", lat: 13.5991, lng: 100.5998, desc: "Coastal province guarding the mouth of the Chao Phraya River near Bangkok." },
+                    { name: "Samut Sakhon", thai: "สมุทรสาคร", lat: 13.0142, lng: 100.2736, desc: "Major hub for Thailand's seafood industry and salt pans." },
+                    { name: "Samut Songkhram", thai: "สมุทรสงคราม", lat: 13.4098, lng: 100.0023, desc: "Smallest province, famous for its unique Amphawa floating markets." },
+                    { name: "Saraburi", thai: "สระบุรี", lat: 13.5283, lng: 100.9100, desc: "Important transit crossroads known for its sacred Buddha footprint shrine." },
+                    { name: "Trat", thai: "ตราด", lat: 12.2428, lng: 102.5156, desc: "Easternmost coastal province leading to paradise islands like Koh Chang." },
+                    { name: "Uthai Thani", thai: "อุทัยธานี", lat: 15.3833, lng: 100.0333, desc: "Peaceful riverside province featuring traditional floating raft communities." }
+                ]
+            },
+            {
+                region: "Southern Thailand (14 Provinces)",
+                provinces: [
+                    { name: "Chumphon", thai: "ชุมพร", lat: 10.4930, lng: 99.1800, desc: "The upper gateway to southern beaches and ferry crossings to Koh Tao." },
+                    { name: "Krabi", thai: "กระบี่", lat: 8.0863, lng: 98.9063, desc: "Famous for dramatic limestone karst formations and emerald lagoons." },
+                    { name: "Nakhon Si Thammarat", thai: "นครศรีธรรมราช", lat: 8.4325, lng: 99.9631, desc: "One of the oldest southern provinces with deep historical roots." },
+                    { name: "Narathiwat", thai: "นราธิวาส", lat: 6.4255, lng: 101.8253, desc: "Southernmost border province featuring unique multicultural traditions." },
+                    { name: "Pattani", thai: "ปัตตานี", lat: 6.8689, lng: 101.2503, desc: "Historic coastal trading port with unique regional architecture." },
+                    { name: "Phang Nga", thai: "พังงา", lat: 8.4502, lng: 98.5292, desc: "Stunning seascape featuring Phang Nga Bay and James Bond Island." },
+                    { name: "Phatthalung", thai: "พัทลุง", lat: 7.6167, lng: 100.0833, desc: "Known for the vast Thale Noi wetland waterfowl sanctuary." },
+                    { name: "Phuket", thai: "ภูเก็ต", lat: 7.8804, lng: 98.3923, desc: "Thailand's largest island destination renowned for beaches and nightlife." },
+                    { name: "Ranong", thai: "ระนอง", lat: 9.9658, lng: 98.6348, desc: "Rainiest province, famous for natural hot springs and island hopping." },
+                    { name: "Satun", thai: "สตูล", lat: 6.6125, lng: 100.0633, desc: "Geopark province featuring tranquil islands like Koh Lipe." },
+                    { name: "Songkhla", thai: "สงขลา", lat: 7.1753, lng: 100.6146, desc: "Major southern commercial hub featuring Hat Yai and old town beaches." },
+                    { name: "Surat Thani", thai: "สุราษฎร์ธานี", lat: 9.1382, lng: 99.3217, desc: "Mainland gateway to popular gulf islands like Koh Samui and Koh Phangan." },
+                    { name: "Trang", thai: "ตรัง", lat: 7.5563, lng: 99.6112, desc: "Relaxed coastal province famous for emerald caves and local cuisine." },
+                    { name: "Yala", thai: "ยะลา", lat: 6.5411, lng: 101.2804, desc: "The only landlocked province in southern Thailand, known for rich hills." }
+                ]
+            }
+        ];
+
+        // Build the Sidebar List dynamically
+        const container = document.getElementById('provinceListContainer');
+
+        thailandRegions.forEach((regData) => {
+            const section = document.createElement('div');
+            section.className = 'region-section';
+
+            const title = document.createElement('div');
+            title.className = 'region-title';
+            title.innerHTML = `${regData.region} <span>▼</span>`;
+
+            const btnWrapper = document.createElement('div');
+            btnWrapper.className = 'province-buttons';
+            btnWrapper.style.display = 'flex'; 
+
+            title.onclick = () => {
+                if (btnWrapper.style.display === 'none') {
+                    btnWrapper.style.display = 'flex';
+                    title.querySelector('span').innerText = '▼';
+                } else {
+                    btnWrapper.style.display = 'none';
+                    title.querySelector('span').innerText = '▶';
+                }
+            };
+
+            regData.provinces.forEach(prov => {
+                const btn = document.createElement('button');
+                btn.className = 'prov-btn';
+                btn.innerHTML = `
+                    <span class="eng-name">${prov.name}</span>
+                    <span class="thai-name">${prov.thai}</span>
+                `;
+                
+                // When a province button is clicked:
+                btn.onclick = () => {
+                    // Pan map to location and zoom in
+                    map.setView([prov.lat, prov.lng], 9, {
+                        animate: true,
+                        duration: 0.8
+                    });
+
+                    // Remove previous marker if it exists
+                    if (activeMarker) {
+                        map.removeLayer(activeMarker);
+                    }
+
+                    // Add new pin marker with popup
+                    activeMarker = L.marker([prov.lat, prov.lng]).addTo(map);
+                    activeMarker.bindPopup(`<b>${prov.name} (${prov.thai})</b><br>${prov.desc}`).openPopup();
+                };
+
+                btnWrapper.appendChild(btn);
+            });
+
+            section.appendChild(title);
+            section.appendChild(btnWrapper);
+            container.appendChild(section);
+        });
+    </script>
+
+</body>
+</html>
