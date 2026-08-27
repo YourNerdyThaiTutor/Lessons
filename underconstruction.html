@@ -5,13 +5,16 @@
         <title>underconstruction</title>
         <style>
             div {
-  display: flex;
-  justify-content: center;
-}
+                display: flex;
+                justify-content: center;
+            }
 
-img {
-  width: 90%;
-}
+            img {
+                /* Scales up to 90% on mobile, but stops growing once it hits 400px on desktop */
+                width: 90%;
+                max-width: 400px; 
+                height: auto; /* Keeps the GIF's aspect ratio correct */
+            }
         </style>
     </head>
     <body><h1 style="text-align: center">This page is still under construction. Will be here once it's done. soon probably.</h1>
